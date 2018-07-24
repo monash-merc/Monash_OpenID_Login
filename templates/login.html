@@ -1,0 +1,52 @@
+{% extends "tardis_portal/portal_template.html" %}
+{% load bootstrap %}
+{% load static from staticfiles %}
+{% block content %}
+    <head>
+        <link href="{% static 'monash/css/default.css' %}" rel="stylesheet">
+    </head>
+    <legend style="text-align: center"> Login to Store.Monash</legend>
+    <div class="container-fluid">
+        <div class="row-fluid col-wrap">
+            <div class="span4 login-box col">
+            <img src="{% static 'monash/images/monash-uni-logo.jpg' %}" class="center-image">
+            <form action="" method="post" class="form-horizontal" style="padding-top: 20px ; ">
+                {% csrf_token %}
+                <input name="next_page" type="hidden" value="{{ next_page }}" />
+                {{ loginForm|bootstrap }}
+                <div class="">
+                    <button type="submit" class="btn btn-info btn-small center-image">
+                        <i class="fa fa-sign-in"></i> Login
+                     </button>
+                </div>
+            </form>
+            </div>
+
+            <div class="span4 login-box col">
+                <img src="{% static 'monash/images/aaf-logo.png' %}" class="center-image">
+                <p class="login-text">Login using your University ID</p>
+                <a href="{% url 'social:begin' 'aaf' %}?next=/" >
+                    <img id="signInButton" class="center-image"
+                         src="{% static 'images/aaf_service.png' %}" />
+                </a>
+            </div>
+
+            <div class="span4 login-box col">
+                <p class="login-text"style="margin-top: 115px">Login with your Google Account</p>
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+                <img id="signInButton" class="center-image"
+                     src="{% static 'images/btn_google_signin_light_pressed_web.png' %}" />
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container-fluid footer-text">
+        <p><strong>New User?</strong> If you don't have an account yet, log in with any of these methods will create
+            an account for you. Login with <strong>Australian Access federation</strong> is the
+            preferred authentication mechanism.
+            <strong>Google Authentication</strong> will require an additional verification step.</p>
+        <p>For more detail please check <a>Store.Monash Authentication.</a></p>
+    </div>
+{% endblock content %}
