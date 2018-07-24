@@ -7,7 +7,7 @@ setup(name='monash_openid_login',
       version=version,
       description="Strore.Monash specific login page for OpenID authentications",
       long_description="""\
-MyTardis app to override default login template and use MOnash specific OpenID authentication methods.\
+MyTardis app to override default login template and use Monash specific OpenID authentication methods.\
 """,
       classifiers=[],
       keywords='store monash openID',
