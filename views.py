@@ -27,18 +27,18 @@ class LoginView(TemplateView):
         if request.user.is_authenticated:
             # redirect the user to the home page if he is trying to go to the
             # login page
-            return HttpResponseRedirect(request.POST.get('next_page', '/'))
+            return HttpResponseRedirect(request.GET.get('next', '/'))
 
         c = self.get_context_data(request, **kwargs)
         return render_response_index(request, self.template_name, c)
 
     def post(self, request, *args, **kwargs):
         from tardis.tardis_portal.auth import auth_service
-
+        c = self.get_context_data(request, **kwargs)
         if request.user.is_authenticated:
             # redirect the user to the home page if he is trying to go to the
             # login page
-            return HttpResponseRedirect(request.POST.get('next_page', '/'))
+            return HttpResponseRedirect(request.POST.get('next', '/'))
 
         # TODO: put me in SETTINGS
         if 'username' in request.POST and \
@@ -50,25 +50,16 @@ class LoginView(TemplateView):
 
             if user:
                 next_page = request.POST.get(
-                    'next_page', request.GET.get('next_page', '/'))
+                    'next_page', '/')
                 user.backend = 'django.contrib.auth.backends.ModelBackend'
                 djauth.login(request, user)
                 return HttpResponseRedirect(next_page)
 
-            c = {'status': "Sorry, username and password don't match.",
-                 'error': True,
-                 'loginForm': LoginForm()}
+            c['status'] = "Sorry, username and password don't match."
+            c['error'] = True
+            c['loginForm'] = LoginForm()
 
             return HttpResponseForbidden(
                 render_response_index(request, self.template_name, c))
-
-        url = request.META.get('HTTP_REFERER', '/')
-        u = urllib.parse.urlparse(url)
-        if u.netloc == request.META.get('HTTP_HOST', ""):
-            next_page = u.path
-        else:
-            next_page = '/'
-        c = {'loginForm': LoginForm(),
-             'next_page': next_page}
 
         return render_response_index(request, self.template_name, c)
