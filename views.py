@@ -3,6 +3,7 @@ from six.moves import urllib
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.contrib import auth as djauth
+from django.contrib.auth.models import User
 
 from tardis.tardis_portal.forms import LoginForm
 from tardis.tardis_portal.shortcuts import render_response_index
@@ -55,7 +56,12 @@ class LoginView(TemplateView):
                 djauth.login(request, user)
                 return HttpResponseRedirect(next_page)
 
-            c['status'] = "Sorry, username and password don't match."
+            if User.objects.filter(
+                    username=request.POST['username'],
+                    is_active=False).first():
+                c['status'] = "Sorry, this account is inactive."
+            else:
+                c['status'] = "Sorry, username and password don't match."
             c['error'] = True
             c['loginForm'] = LoginForm()
 
