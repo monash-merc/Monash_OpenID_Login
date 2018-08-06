@@ -8,7 +8,7 @@
     <legend style="text-align: center"> Log In to Store.Monash</legend>
     <div class="container-fluid">
         <div class="row-fluid col-wrap">
-            <div class="span4 login-box col">
+            <div class="span6 login-box col">
             <img src="{% static 'monash/images/monash-uni-logo.png' %}" class="center-image">
             <form action="" method="post" class="form-horizontal" style="padding-top: 20px ; ">
                 {% csrf_token %}
@@ -22,7 +22,7 @@
             </form>
             </div>
 
-            <div class="span4 login-box col">
+            <div class="span6 login-box col">
                 <img src="{% static 'monash/images/aaf-logo.png' %}" style="max-width: 50%" class="center-image">
                 <p class="login-text">Log In using your University ID</p>
                 <a href="{% url 'social:begin' 'aaf' %}?next=/" >
