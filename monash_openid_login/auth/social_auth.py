@@ -10,4 +10,4 @@ def create_google_user(strategy, details, backend, user=None, *args, **kwargs):
 
     if 'monash.edu' not in details['email']:
         return create_user(strategy, details, backend, user, *args, **kwargs)
-    raise AuthFailed(backend, "Monash users should log in using AAF instead of Google.")
+    raise AuthFailed(backend, "Monash users should log in using the Australian Access Federation instead of Google.")
