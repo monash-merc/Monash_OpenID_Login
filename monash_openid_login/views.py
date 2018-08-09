@@ -78,7 +78,8 @@ def check_account_migration(request):
     check whether the user already has an account with the same email
     address which needs to be migrated.
     """
-    messages.add_message(request, messages.INFO,
-        'Please click on your email address and select the '
-        '"Migrate My Account" menu item to migrate your old account')
+    if '@' in request.user.username:
+        messages.add_message(request, messages.INFO,
+            'Please click on your email address and select the '
+            '"Migrate My Account" menu item to migrate your old account')
     return HttpResponseRedirect(request.GET.get('next_page', '/'))
