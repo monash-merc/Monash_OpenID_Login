@@ -14,10 +14,12 @@
                 {% csrf_token %}
                 <input name="next_page" type="hidden" value="{{ next_page }}" />
                 {{ loginForm|bootstrap }}
-                <div class="">
-                    <button type="submit" class="btn btn-info btn-small center-image">
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn btn-info btn-small">
                         <i class="fa fa-sign-in"></i> Log In
                      </button>
+                  </div>
                 </div>
             </form>
             </div>
