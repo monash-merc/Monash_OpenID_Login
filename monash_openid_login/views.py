@@ -1,3 +1,5 @@
+import logging
+
 from six.moves import urllib
 
 from django.views.generic.base import TemplateView
@@ -8,6 +10,8 @@ from django.contrib import messages
 
 from tardis.tardis_portal.forms import LoginForm
 from tardis.tardis_portal.shortcuts import render_response_index
+
+logger = logging.getLogger('tardis.apps.' + __name__)
 
 
 class LoginView(TemplateView):
@@ -55,19 +59,18 @@ class LoginView(TemplateView):
             user = auth_service.authenticate(
                 authMethod=authMethod, request=request)
 
-            if user:
+            if user and user.is_active:
                 next_page = request.POST.get(
                     'next_page', '/')
                 user.backend = 'django.contrib.auth.backends.ModelBackend'
                 djauth.login(request, user)
                 return HttpResponseRedirect(next_page)
 
-            if User.objects.filter(
-                    username=request.POST['username'],
-                    is_active=False).first():
+            if user and not user.is_active:
                 c['status'] = "Sorry, this account is inactive."
             else:
                 c['status'] = "Sorry, username and password don't match."
+
             c['error'] = True
             c['loginForm'] = LoginForm()
 
