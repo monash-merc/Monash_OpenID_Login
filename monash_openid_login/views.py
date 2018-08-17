@@ -78,16 +78,3 @@ class LoginView(TemplateView):
                 render_response_index(request, self.template_name, c))
 
         return render_response_index(request, self.template_name, c)
-
-
-def check_account_migration(request):
-    """
-    This method is to be run after a successful AAF login, and should
-    check whether the user already has an account with the same email
-    address which needs to be migrated.
-    """
-    if '@' in request.user.username:
-        messages.add_message(request, messages.INFO,
-            'Please click on your email address and select the '
-            '"Migrate My Account" menu item to migrate your old account')
-    return HttpResponseRedirect(request.GET.get('next_page', '/'))
