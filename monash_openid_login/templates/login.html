@@ -31,7 +31,7 @@
             <div class="span6 login-box">
                 <img src="{% static 'monash/images/aaf-logo.png' %}" style="max-width: 50%" class="center-image">
                 <p class="login-text">Log In using your University ID</p>
-                <a href="{% url 'social:begin' 'aaf' %}?next={% url 'tardis.apps.monash.views.check_account_migration' %}" >
+                <a href="{% url 'social:begin' 'aaf' %}?next=/">
                     <img id="signInButton" class="center-image"
                          src="{% static 'monash/images/aaf_service.png' %}" />
                 </a>
