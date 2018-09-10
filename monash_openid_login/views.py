@@ -2,6 +2,8 @@ import logging
 
 from six.moves import urllib
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.contrib import auth as djauth
@@ -43,6 +45,7 @@ class LoginView(TemplateView):
         c = self.get_context_data(request, **kwargs)
         return render_response_index(request, self.template_name, c)
 
+    @method_decorator(sensitive_post_parameters('password'))
     def post(self, request, *args, **kwargs):
         from tardis.tardis_portal.auth import auth_service
         c = self.get_context_data(request, **kwargs)
