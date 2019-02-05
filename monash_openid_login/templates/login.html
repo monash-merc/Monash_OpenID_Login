@@ -7,35 +7,38 @@
     </head>
     <legend style="text-align: center"> Log In to Store.Monash</legend>
     <div class="container-fluid">
-        <div class="row-fluid monash-flexbox">
-          <div class="span6 login-box">
+        <div class="row monash-flexbox">
+          <div class="col-md-5 login-box">
             <form action="" method="post" class="form-horizontal" style="padding-top: 20px ; ">
                 {% csrf_token %}
                 <input name="next_page" type="hidden" value="{{ next_page }}" />
-                <div class="control-group">
-                  <div class="controls">
-                    <img src="{% static 'monash/images/monash-uni-logo.png' %}" class="monash-logo-login-form">
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8">
+                    <img src="{% static 'monash/images/monash-uni-logo.png' %}"
+                         class="monash-logo-login-form">
                   </div>
                 </div>
-                {{ loginForm|bootstrap }}
-                <div class="control-group">
-                  <div class="controls">
+                {{ loginForm|bootstrap_horizontal:'col-md-2' }}
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8">
                     <button type="submit" class="btn btn-info btn-small">
                         <i class="fa fa-sign-in"></i> Log In
                      </button>
                   </div>
                 </div>
             </form>
-            </div>
+          </div>
 
-            <div class="span6 login-box">
-                <img src="{% static 'monash/images/aaf-logo.png' %}" style="max-width: 50%" class="center-image">
-                <p class="login-text">Log In using your University ID</p>
-                <a href="{% url 'social:begin' 'aaf' %}?next=/">
-                    <img id="signInButton" class="center-image"
-                         src="{% static 'monash/images/aaf_service.png' %}" />
-                </a>
-            </div>
+          <div class="col-md-offset-1 col-md-5 login-box">
+              <img src="{% static 'monash/images/aaf-logo.png' %}"
+                   style="max-width: 50%" class="center-image">
+              <p class="login-text">Log In using your University ID</p>
+              <a href="{% url 'social:begin' 'aaf' %}?next=/">
+                  <img id="signInButton" class="center-image"
+                       src="{% static 'monash/images/aaf_service.png' %}" />
+              </a>
+          </div>
+        </div>  <!-- class="row monash-flexbox" -->
     </div>
     <div class="container-fluid footer-text">
         <p><strong>New User?</strong> If you don't have an account yet, logging in with any of these methods will create
