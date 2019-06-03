@@ -16,4 +16,5 @@ MyTardis app to override default login template and use Monash specific OpenID a
       url='',
       license='',
       packages=find_packages(),
+      include_package_data=True
       )
