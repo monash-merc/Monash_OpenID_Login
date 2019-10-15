@@ -19,7 +19,7 @@ Install the latest version of the `Monash_OpenID_Login` app:
 pip install git+https://github.com/monash-merc/Monash_OpenID_Login@master#egg=monash_openid_login
 ```
 
-If you using a virtualenv, remember to activate it first.
+If using a virtualenv, remember to activate it first.
 
 Add the following to your MyTardis settings file eg. `/path/to/mytardis/tardis/settings.py`:
 
