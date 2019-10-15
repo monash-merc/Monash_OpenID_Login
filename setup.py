@@ -5,7 +5,7 @@ version = '0.0.1'
 
 setup(name='monash_openid_login',
       version=version,
-      description="Strore.Monash specific login page for OpenID authentications",
+      description="Store.Monash specific login page for OpenID authentications",
       long_description="""\
 MyTardis app to override default login template and use Monash specific OpenID authentication methods.\
 """,
