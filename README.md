@@ -23,10 +23,11 @@ If using a virtualenv, remember to activate it first.
 
 Add the following to your MyTardis settings file eg. `/path/to/mytardis/tardis/settings.py`:
 
-Add `Monash_OpenID_Login` to your `INSTALLED_APPS`:
+Add  `tardis.apps.social_auth` and `Monash_OpenID_Login` to your `INSTALLED_APPS`:
 
 ```
 INSTALLED_APPS = INSTALLED_APPS + (
+    'tardis.apps.social_auth',
     'monash_openid_login',
 )
 ```
