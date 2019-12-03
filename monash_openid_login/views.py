@@ -28,10 +28,6 @@ class LoginView(TemplateView):
             next_page = '/'
         c = super(LoginView, self).get_context_data(**kwargs)
         login_form = LoginForm()
-        login_form.fields['username'].widget.attrs['style'] = \
-            "width: 70%; max-width: 200px;"
-        login_form.fields['password'].widget.attrs['style'] = \
-            "width: 70%; max-width: 200px;"
         c['loginForm'] = login_form
         c['next_page'] = next_page
         return c
