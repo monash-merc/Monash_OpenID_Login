@@ -1,5 +1,6 @@
 import logging
 
+from django.conf import settings
 from six.moves import urllib
 
 from django.utils.decorators import method_decorator
@@ -33,6 +34,9 @@ class LoginView(TemplateView):
         return c
 
     def get(self, request, *args, **kwargs):
+        from django.contrib import messages
+        if hasattr(settings, 'LOGIN_PAGE_MESSAGE'):
+            messages.add_message(request, messages.INFO, settings.LOGIN_PAGE_MESSAGE, extra_tags='safe')
         if request.user.is_authenticated:
             # redirect the user to the home page if he is trying to go to the
             # login page

@@ -40,5 +40,10 @@ LOGIN_VIEWS = {
 }
 ```
 
+If you need to provide custom message on Login page, please add following settings to your `setting.py` file.
+```
+LOGIN_PAGE_MESSAGE = "A sample message"
+```
+
 For more information on overriding MyTardis's login view, see:
 <https://mytardis.readthedocs.io/en/develop/apps/contextual_views.html#custom-login-view>
