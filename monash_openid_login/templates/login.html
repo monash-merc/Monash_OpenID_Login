@@ -18,35 +18,8 @@
       <img src="{% static 'monash/images/aaf_service.png' %}" width="223" height="54" alt="Log In using your University ID">
     </a>
   </section>
-  <p class="mt-5">You can also <a href="javascript:void(0);" id="showAD">login using Monash active directory account</a>.</p>
-  <section id="loginAD" class="col-md-4 mx-auto text-center py-4" style="display:none;">
-    <img src="{% static 'monash/images/monash-uni-logo.png' %}" width="215" alt="Monash University">
-    <form action="" method="post" class="justify-content-center">
-      <input name="next_page" type="hidden" value="{{ next_page }}">
-      {% csrf_token %}
-      <div class="form-group">
-        <label for="username" class="col-form-label font-weight-bold">Username</label>
-        <input type="text" class="form-control" name="username" maxlength="75" required id="id_username" autocomplete="off" placeholder="DO NOT use your @monash.edu email">
-      </div>
-      <div class="form-group">
-        <label for="password" class="col-form-label font-weight-bold">Password</label>
-        <input type="password" class="form-control" name="password" required id="id_password" autocomplete="off">
-      </div>
-      <div class="form-group">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log In</button>
-      </div>
-    </form>
-  </section>
-  <p>In case you don't have AAF or Monash AD account, you can <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">login using Google Account</a>,<br>but this will require an additional activation step by administrators.</p>
+  <p class="mt-5">Please <a href="https://storemonash.readthedocs.io/en/latest/account_migration_aaf.html">migrate your Store.Monash account</a> from Monash Active Directory to AAF.</p>
+  <p>In case you don't have AAF account, you can <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">login using Google Account</a>,<br>but this will require an additional activation step by administrators.</p>
 </article>
-
-<script type="text/javascript">
-$(document).ready(
-    function(){
-        $('#showAD').on('click', function(e) {
-            $('#loginAD').slideDown();
-        });
-    });
-</script>
 
 {% endblock content %}
